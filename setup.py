@@ -5,7 +5,7 @@ with open('README.md','r') as file:
 
 setuptools.setup(
 	name='preprocess_trueankitgupta', # this should be uniqure
-	version='0,0,1',
+	version='0,0,2',
 	author='Ankit Gupta',
 	author_email='trueankitgupta@gmail.com',
 	description='This is preprocessing',

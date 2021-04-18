@@ -1,4 +1,4 @@
-from  preprocess_kgptalkie import utils
+from  preprocess_trueankitgupta import utils
 
 __version__='0.0.1'
 
@@ -68,11 +68,11 @@ def make_base(x):
 	return utils.make_base(x)
 
 def _remove_common_words(x,n=20):
-	return utils._remove_common_words(x)
+	return utils._remove_common_words(x,n)
 
 
 def _remove_rarewords(x,n=20):
-	return utils._remove_rarewords(x,n=20)
+	return utils._remove_rarewords(x,n)
 
 def _spelling_correction(x):
 	return utils._spelling_correction(x)
