@@ -12,7 +12,7 @@ import unicodedata
 
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
-
+nlp=spacy.load('en_core_web_sm')
 
 
 def _get_wordcounts(x):
@@ -47,7 +47,7 @@ def _get_digit_counts(x):
 def _get_uppercase_counts(x):
 	return len([t for t in x.split() if t.isupper()])
 
-def _get_cont_exp(x):
+def _cont_exp(x):
 	contractions = { 
 	"ain't": "am not",
 	"aren't": "are not",
@@ -191,18 +191,20 @@ def _make_base(x):
 		x_list.append(lemma)
 	return ' '.join(x_list)
 
-def _remove_commonwords(x,n=20):
-	text=x.split()
-	freq_comm=pd.Series(text).value_counts()
-	fn=freq_comm[:n]
+def _get_value_counts(df,col):
+	text=' '.join(df[col])
+	text=text.split()
+	freq=pd.Series(text).value_counts()
+	return freq
+	
+def _remove_commonwords(x,freq,n=20):
+	fn=freq[:n]
 
 	x=' '.join([t for t in x.split() if t not in fn])
 	return x
 
-def _remove_rarewords(x,n=20):
-	text=x.split()
-	freq_comm=pd.Series(text).value_counts()
-	fn=freq_comm.tail(n)
+def _remove_rarewords(x,freq,n=20):
+	fn=freq.tail(n)
 
 	x=' '.join([t for t in x.split() if t not in fn])
 	return x
